@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Audio Mashup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <main class="container">
+        <div class="glass-panel">
+            <h1>YouTube Mashup</h1>
+            <p class="subtitle">Create audio mashups from your favorite artists in seconds</p>
+
+            <form id="mashupForm" method="POST">
+                <div class="input-group">
+                    <label for="singer_name">Singer Name</label>
+                    <input type="text" id="singer_name" name="singer_name" placeholder="e.g., Taylor Swift" required>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="num_videos">Number of Videos</label>
+                        <input type="number" id="num_videos" name="num_videos" placeholder="> 10" min="11" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="duration">Duration of Each Video (seconds)</label>
+                        <input type="number" id="duration" name="duration" placeholder="> 20" min="21" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn-primary">
+                    <span class="btn-text">Create Mashup</span>
+                    <span class="spinner hidden"></span>
+                </button>
+            </form>
+
+            <div id="messages">
+                {% if errors %}
+                <div class="message error fade-in">
+                    <ul>
+                        {% for e in errors %}<li>{{ e }}</li>{% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                {% if success %}
+                <div class="message success fade-in">{{ success }}</div>
+                {% endif %}
+                {% if error %}
+                <div class="message error fade-in">{{ error }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loader-content">
+            <div class="animated-bars">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <h2 id="progressTitle">Processing Mashup...</h2>
+            <div class="progress-bar-container">
+                <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+            </div>
+            <p id="progressStatus">Initializing pipeline...</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

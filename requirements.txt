@@ -1,0 +1,6 @@
+Flask==3.0.3
+yt-dlp>=2024.3.10
+pydub==0.25.1
+python-dotenv==1.0.1
+waitress==3.0.1
+audioop-lts; python_version >= "3.13"

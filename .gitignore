@@ -1,0 +1,21 @@
+# Environments
+.env
+
+# Cache
+__pycache__/
+*.pyc
+
+# Cookies
+cookies.txt
+
+# Temp files
+temp_videos/
+temp_audio/
+temp_clips/
+
+# Zip and audio files
+*.zip
+*.mp3
+
+# Logs
+logs/
